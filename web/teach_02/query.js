@@ -1,3 +1,3 @@
 $("#colorButton").click(function () {
-        $(".first").css({"background-color": $('#txtColor').val()});
+        $(".first").css("background-color", $('#txtColor').val());
     });
