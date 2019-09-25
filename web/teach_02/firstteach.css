@@ -1,0 +1,22 @@
+/* firstteach.css */
+
+.first {
+	background-color: ##e41f2a;
+	font-size: 2.5em;
+}
+
+.later {
+	font-size: 2em;
+}
+
+#div2 {
+	background-color: ##0bec15;
+}
+
+#div3 {
+	background-color: ##cc885d;
+}
+
+.hover-bold:hover {
+	font-weight: bold;
+}
