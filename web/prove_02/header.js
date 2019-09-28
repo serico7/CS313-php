@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$("#mainNav").mouseleave(function () {
 		$("#mainNav").css({
 			transition: 'background-color .3s ease-in-out',
-			"background-color":"#white"
+			"background-color":"white"
 		});
 	});
 	$("#indexNav").mouseenter(function () {
@@ -20,7 +20,7 @@ $(document).ready(function(){
 	$("#indexNav").mouseleave(function () {
 		$("#indexNav").css({
 			transition: 'background-color .3s ease-in-out',
-			"background-color":"#white"
+			"background-color":"white"
 		});
 	});
 });
