@@ -12,6 +12,9 @@ p {
 
 .title {
 	background-color:black;
-	font-size:30;
 	color:white;
+}
+
+.title div {
+		font-size:40px;
 }
