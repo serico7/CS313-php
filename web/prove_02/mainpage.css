@@ -1,0 +1,25 @@
+body {
+	background-color:#ffcccc !important;
+}
+
+div {
+	text-align:center;
+}
+
+p {
+	text-align:center;
+}
+
+.title {
+	background-color:black;
+	color:white;
+}
+
+.title div {
+		font-size:40px;
+}
+
+.sub {
+	background-color:white;
+	font-size:25px;
+}

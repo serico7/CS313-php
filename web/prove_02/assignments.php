@@ -3,6 +3,7 @@
 <head>
 	<title>Assignments</title>
 	<link rel="stylesheet" type="text/css" href="assignments.css">
+	<script src="header.js"></script>
 	<?php include 'libraries.php';?>
 </head>
 <body>
