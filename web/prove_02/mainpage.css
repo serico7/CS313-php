@@ -4,11 +4,11 @@ body {
 
 div {
 	text-align:center;
-	margin:auto;
 }
 
 p {
 	width:75%;
+	margin:auto;
 }
 
 .title {
