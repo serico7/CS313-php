@@ -10,6 +10,7 @@ p {
 	background-color:black
 }
 
-h2 {
+.title h2 {
 	color:white;
+	text-align:center;
 }
