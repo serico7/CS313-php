@@ -8,6 +8,7 @@ div {
 
 p {
 	text-align:center;
+	width:75%;
 }
 
 .title {
@@ -22,4 +23,10 @@ p {
 .sub {
 	background-color:white;
 	font-size:25px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
