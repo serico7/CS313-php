@@ -18,3 +18,8 @@ p {
 .title div {
 		font-size:40px;
 }
+
+.sub {
+	background-color:white;
+	font-size:25px;
+}
