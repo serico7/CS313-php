@@ -22,7 +22,7 @@ $statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
-	$name = $row['exs.name'];
+	$name = $row['name'];
 	$art = $row['exs.art'];
 	$charid = $row['why.charid'];
 	echo "<tr> $name </tr>";
