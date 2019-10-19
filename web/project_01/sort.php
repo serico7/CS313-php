@@ -11,8 +11,6 @@ $db = get_db();
 </head>
 
 <body>
-<div>
-
 
 <table>
 <?php
@@ -25,12 +23,10 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	$name = $row['name'];
 	$art = $row['exs.art'];
 	$charid = $row['why.charid'];
-	echo "<tr> $name </tr>";
+	echo "<tr><td> $name </td></tr>";
 }
 ?>
 </table>
-
-</div>
 
 </body>
 </html>
