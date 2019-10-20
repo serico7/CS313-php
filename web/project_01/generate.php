@@ -2,7 +2,7 @@
 
 require "dbConnect.php";
 $db = get_db();
-$ids = explode( ',', $order )
+$ids = explode( ',', $_POST["order"] )
 ?>
 
 <!DOCTYPE html>
