@@ -45,7 +45,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	$art = $row['art'];
 	$charid = $row['charid'];
 	echo "<li id='$charid'> $name (<a href='$art'>X</a>)</li>";
-	$count = $count++;
+	$count++;
 }
     echo "</ul><input id='sortsize' type='hidden' value='$count' name='sortsize'></input>"
 ?>
