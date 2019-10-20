@@ -36,9 +36,9 @@ $statement->execute();
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
 	$name = $row['name'];
-	$art = $row['exs.art'];
-	$charid = $row['why.charid'];
-	echo "<li id='$charid'> $name (<a href='$art'>X</a)</li>";
+	$art = $row['art'];
+	$charid = $row['charid'];
+	echo "<li id='$charid'> $name (<a href='$art'>X</a>)</li>";
 }
 ?>
 </ul>
