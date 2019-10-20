@@ -62,5 +62,24 @@ Number of images: <select class="selector" name="Imagenum">
 </select>
 <button id="generate" type="submit"> Generate </button>
 </form>
+
+<br/>
+<form>
+
+<?php
+$statement = $db->prepare("SELECT why.workid, why.isincluded, exs.name FROM selectedworks AS why JOIN works AS exs ON why.workid = exs.workid WHERE userid=:id ORDER BY why.workid");
+$statement->bindValue(':id', $id, PDO::PARAM_INT);
+$statement->execute();
+while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+{
+	$name = $row['name'];
+	$aBool = $row['isincluded'];
+	$workid = $row['workid'];
+	echo "<input id='$workid' type='checkbox' name='$name' " . $aBool ? 'checked' : ''; . "/>";
+}
+?>	
+</form>
+
+
 </body>
 </html>
