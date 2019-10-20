@@ -1,5 +1,12 @@
 <?php
-
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//    header("location: login.php");
+ //   exit;
+//}
 require "dbConnect.php";
 $db = get_db();
 ?>
@@ -31,7 +38,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	$name = $row['name'];
 	$art = $row['exs.art'];
 	$charid = $row['why.charid'];
-	echo "<li> $name </li>";
+	echo "<li id='$charid'> $name (<a href='$art'>X</a)</li>";
 }
 ?>
 </ul>
