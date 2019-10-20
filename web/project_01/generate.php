@@ -12,10 +12,10 @@ $ids = explode( ',', $_POST["order"] )
 
 <?php
 $count = 0;
-for ($i = 0; $i < $_POST["Imagenum"]; $i++;)
+for ($i = 0; $i < $_POST["Imagenum"]; $i++)
 {
 	echo "<tr>";
-	for ($j = 0; j < 5; j++)
+	for ($j = 0; $j < 5; $j++)
 	{
 		$statement = $db->prepare("SELECT name, art FROM characters WHERE charid=:id");
 		$statement->bindValue(':id', $ids[$count], PDO::PARAM_INT);
@@ -32,7 +32,7 @@ for ($i = 0; $i < $_POST["Imagenum"]; $i++;)
 while (($count + 5) < $_POST["sortsize"])
 {
 	echo "<tr>";
-	for ($j = 0; j < 5; j++)
+	for ($j = 0; $j < 5; $j++)
 	{
 		$statement = $db->prepare("SELECT name, art FROM characters WHERE charid=:id");
 		$statement->bindValue(':id', $ids[$count], PDO::PARAM_INT);
