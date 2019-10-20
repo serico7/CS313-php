@@ -25,7 +25,7 @@ $(document).ready(function(){
         axis: 'y',
         stop: function (event, ui) {
 	        var data = $(this).sortable('toArray');
-            $('order').value(data);
+            $('#order').val(data);
 }});});
 </script>
 </head>
