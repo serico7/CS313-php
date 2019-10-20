@@ -24,7 +24,7 @@ $(document).ready(function(){
 	$("#generate").mouseenter(function () {
 		var data = $("#sortable").sortable('toArray');
         $('#order').val(data);
-		};
+		});
 	$( "#sortable" ).disableSelection();
 	$('ul').sortable({
         axis: 'y',
