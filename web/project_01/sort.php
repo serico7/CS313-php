@@ -75,7 +75,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	$name = $row['name'];
 	$aBool = $row['isincluded'];
 	$workid = $row['workid'];
-	echo "<input id='$workid' type='checkbox' name='$name' " . $aBool ? 'checked' : ''; . "/>";
+	echo "<input id='$workid' type='checkbox' name='$name' " . ($aBool ? 'checked' : '') . "/>";
 }
 ?>	
 </form>
