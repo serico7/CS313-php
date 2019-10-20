@@ -26,7 +26,7 @@ $(document).ready(function(){
         stop: function (event, ui) {
 	        var data = $(this).sortable('toArray');
             $('order').value(data);
-});});
+}});});
 </script>
 </head>
 
