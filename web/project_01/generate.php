@@ -7,6 +7,9 @@ $ids = explode( ',', $_POST["order"] )
 
 <!DOCTYPE html>
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body>
 <table>
 
@@ -24,7 +27,7 @@ for ($i = 0; $i < $_POST["Imagenum"]; $i++)
 		$name = $row['name'];
 		$art = $row['art'];
 		$charid = $row['charid'];
-		echo "<td><img src='$art' title='$name' alt='$name'/></td>";
+		echo "<td><img class='art' src='$art' title='$name' alt='$name'/></td>";
 		$count++;
 	}
 	echo "</tr>";

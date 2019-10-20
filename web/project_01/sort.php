@@ -3,10 +3,11 @@
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
-//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//    header("location: login.php");
- //   exit;
-//}
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+$id=$_SESSION["id"];
 require "dbConnect.php";
 $db = get_db();
 ?>
@@ -20,6 +21,10 @@ $db = get_db();
 <script>
 $(document).ready(function(){
 	$( "#sortable" ).sortable();
+	$("#generate").mouseenter(function () {
+		var data = $("#sortable").sortable('toArray');
+        $('#order').val(data);
+		};
 	$( "#sortable" ).disableSelection();
 	$('ul').sortable({
         axis: 'y',
@@ -34,7 +39,6 @@ $(document).ready(function(){
 <form method="post" action="generate.php">
 <ul id="sortable" >
 <?php
-$id=1;
 $statement = $db->prepare("SELECT why.charid, exs.name, exs.art FROM rankedchars AS why JOIN characters AS exs ON why.charid = exs.charid WHERE userid=:id AND isIncluded ORDER BY userRank, why.charid");
 $statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
@@ -56,7 +60,7 @@ Number of images: <select class="selector" name="Imagenum">
     <option value="3">Fifteen</option>
     <option value="4">Twenty</option>
 </select>
-<button type="submit"> Generate </button>
+<button id="generate" type="submit"> Generate </button>
 </form>
 </body>
 </html>
