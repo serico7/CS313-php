@@ -40,6 +40,7 @@ if(isset($_POST['save']))
 <body>
 <form method="post" action="sort.php">
 <ul id="sortable" >
+
 <?php
 $statement = $db->prepare("SELECT why.charid, exs.name, exs.art FROM rankedchars AS why JOIN characters AS exs ON why.charid = exs.charid WHERE userid=:id AND isIncluded ORDER BY userRank, why.charid");
 $statement->bindValue(':id', $id, PDO::PARAM_INT);
@@ -53,10 +54,11 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	echo "<li id='$charid'> $name (<a href='$art'>X</a>)</li>";
 	$count++;
 }
-    $_SESSION["sortsize"] = $count;
+$_SESSION["sortsize"] = $count;
 ?>
+
 <input id='order' type='hidden' value='' name='order'></input>
-<button id="save" type="submit" name="save"> Save </button>
+<button id="save" type="submit" class="update" name="save"> Save </button>
 </form>
 
 <br/>
@@ -68,7 +70,7 @@ Number of images: <select class="selector" name="Imagenum">
     <option value="3">Fifteen</option>
     <option value="4">Twenty</option>
 </select>
-<button id="generate" type="submit"> Generate </button>
+<button id="generate" class="update" type="submit"> Generate </button>
 </form>
 
 <?php
