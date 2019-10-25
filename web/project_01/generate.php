@@ -32,7 +32,7 @@ for ($i = 0; $i < $_POST["Imagenum"]; $i++)
 	}
 	echo "</tr>";
 }
-while (($count + 5) < $_SESSION["sortsize"])
+while (($count + 5) < $_POST["sortsize2"])
 {
 	echo "<tr>";
 	for ($j = 0; $j < 5; $j++)
@@ -49,7 +49,7 @@ while (($count + 5) < $_SESSION["sortsize"])
 	echo "</tr>";
 }
 echo "<tr>";
-while ($count < $_SESSION["sortsize"])
+while ($count < $_POST["sortsize2"])
 {
 	$statement = $db->prepare("SELECT name, art FROM characters WHERE charid=:id");
 	$statement->bindValue(':id', $ids[$count], PDO::PARAM_INT);

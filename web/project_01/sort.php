@@ -14,7 +14,7 @@ $db = get_db();
 if(isset($_POST['save']))
 {
 	$order = $_POST["order"];
-	for($i = 0; $i < $_SESSION["sortsize"]; $i++)
+	for($i = 0; $i < $_POST["sortsize"]; $i++)
 	{
 		$statement = $db->prepare("UPDATE rankedchars SET rank=:rank WHERE userid=:id AND charid=:charid");
 		$statement->bindValue(':id', $id, PDO::PARAM_INT);
@@ -54,7 +54,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	echo "<li id='$charid'> $name (<a href='$art'>X</a>)</li>";
 	$count++;
 }
-$_SESSION["sortsize"] = $count;
+	echo "</ul><input id='sortsize' type='hidden' value='$count' name='sortsize'></input>";
 ?>
 
 <input id='order' type='hidden' value='' name='order'></input>
@@ -63,14 +63,15 @@ $_SESSION["sortsize"] = $count;
 
 <br/>
 <form method="post" action="generate.php">
-<input id='order2' type='hidden' value='' name='order2'></input>
+	<input id='sortsize2' type='hidden' value='$count' name='sortsize'></input>
+	<input id='order2' type='hidden' value='' name='order2'></input>
 Number of images: <select class="selector" name="Imagenum">
-    <option value="1">Five</option>
-    <option value="2">Ten</option>
-    <option value="3">Fifteen</option>
-    <option value="4">Twenty</option>
-</select>
-<button id="generate" class="update" type="submit"> Generate </button>
+    	<option value="1">Five</option>
+    	<option value="2">Ten</option>
+    	<option value="3">Fifteen</option>
+    	<option value="4">Twenty</option>
+	</select>
+	<button id="generate" class="update" type="submit"> Generate </button>
 </form>
 
 <?php
