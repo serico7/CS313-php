@@ -13,7 +13,7 @@ $db = get_db();
 
 if(isset($_POST['save']))
 {
-	$ids = explode( ',', $_POST["order2"] )
+	$ids = explode( ',', $_POST["order2"] );
 	for($i = 0; $i < $_POST["sortsize"]; $i++)
 	{
 		$statement = $db->prepare("UPDATE rankedchars SET userRank=:rank WHERE userid=:id AND charid=:charid");
