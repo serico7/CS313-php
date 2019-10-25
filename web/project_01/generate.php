@@ -2,7 +2,7 @@
 
 require "dbConnect.php";
 $db = get_db();
-$ids = explode( ',', $_POST["order"] )
+$ids = explode( ',', $_POST["order2"] )
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +27,12 @@ for ($i = 0; $i < $_POST["Imagenum"]; $i++)
 		$name = $row['name'];
 		$art = $row['art'];
 		$charid = $row['charid'];
-		echo "<td><img class='art' src='$art' title='$name' alt='$name'/></td>";
+		echo "<td><img class='art' src='art/$art' title='$name' alt='$name'/></td>";
 		$count++;
 	}
 	echo "</tr>";
 }
-while (($count + 5) < $_POST["sortsize"])
+while (($count + 5) < $_SESSION["sortsize"])
 {
 	echo "<tr>";
 	for ($j = 0; $j < 5; $j++)
@@ -49,7 +49,7 @@ while (($count + 5) < $_POST["sortsize"])
 	echo "</tr>";
 }
 echo "<tr>";
-while ($count < $_POST["sortsize"])
+while ($count < $_SESSION["sortsize"])
 {
 	$statement = $db->prepare("SELECT name, art FROM characters WHERE charid=:id");
 	$statement->bindValue(':id', $ids[$count], PDO::PARAM_INT);
