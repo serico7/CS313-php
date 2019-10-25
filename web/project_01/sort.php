@@ -13,13 +13,13 @@ $db = get_db();
 
 if(isset($_POST['save']))
 {
-	$order = $_POST["order"];
+	$ids = explode( ',', $_POST["order2"] )
 	for($i = 0; $i < $_POST["sortsize"]; $i++)
 	{
 		$statement = $db->prepare("UPDATE rankedchars SET userRank=:rank WHERE userid=:id AND charid=:charid");
 		$statement->bindValue(':id', $id, PDO::PARAM_INT);
 		$statement->bindValue(':rank', ($i + 1), PDO::PARAM_INT);
-		$statement->bindValue(':charid', $order[$i], PDO::PARAM_INT);
+		$statement->bindValue(':charid', $ids[$i], PDO::PARAM_INT);
 		$statement->execute();
 	}
 } 
