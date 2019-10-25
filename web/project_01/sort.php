@@ -16,7 +16,7 @@ if(isset($_POST['save']))
 	$order = $_POST["order"];
 	for($i = 0; $i < $_POST["sortsize"]; $i++)
 	{
-		$statement = $db->prepare("UPDATE rankedchars SET rank=:rank WHERE userid=:id AND charid=:charid");
+		$statement = $db->prepare("UPDATE rankedchars SET userRank=:rank WHERE userid=:id AND charid=:charid");
 		$statement->bindValue(':id', $id, PDO::PARAM_INT);
 		$statement->bindValue(':rank', ($i + 1), PDO::PARAM_INT);
 		$statement->bindValue(':charid', $order[$i], PDO::PARAM_INT);
@@ -51,7 +51,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	$name = $row['name'];
 	$art = $row['art'];
 	$charid = $row['charid'];
-	echo "<li id='$charid'> $name (<a href='$art'>X</a>)</li>";
+	echo "<li id='$charid'> $name (<a href='art/$art'>X</a>)</li>";
 	$count++;
 }
 	echo "</ul><input id='sortsize' type='hidden' value='$count' name='sortsize'></input>";
