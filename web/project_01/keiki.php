@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->execute();
             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
             {
-                $statement2 = $db->prepare("INSERT INTO selectedworks (userid, workid, isincluded, userRank) VALUES (:id, :charid, '0', NULL)");
+                $statement2 = $db->prepare("INSERT INTO rankedchars (userid, workid, isincluded, userRank) VALUES (:id, :charid, '0', NULL)");
                 $statement2->bindValue(':id', $id, PDO::PARAM_INT);
                 $statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
                 $statement2->execute();
