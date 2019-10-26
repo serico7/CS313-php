@@ -92,7 +92,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 		array_push($array, $workid);
 	}
 }
-	$array = implode(",", $array)
+	$array = implode(",", $array);
 	echo "
 	<input id='workcount' type='hidden' value='$count' name='count'></input>
 	<input id='true' type='hidden' value='$array' name='true'></input>
