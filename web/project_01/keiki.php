@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $id = row['userid'];
+            $id = $row['userid'];
 
             $stmt = $db->prepare("SELECT workid FROM works");
             $stmt->execute();
@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             {
                 $statement2 = $db->prepare("INSERT INTO selectedworks (userid, workid, isincluded) VALUES (:id, :workid, '0')");
                 $statement2->bindValue(':id', $id, PDO::PARAM_INT);
-                $statement2->bindValue(':workid', $row['charid'], PDO::PARAM_INT);
+                $statement2->bindValue(':workid', $row['workid'], PDO::PARAM_INT);
                 $statement2->execute();
             }
 
@@ -76,9 +76,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->execute();
             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
             {
-                $statement2 = $db->prepare("INSERT INTO selectedworks (userid, workid, isincluded, userRank) VALUES (:id, :workid, '0', NULL)");
+                $statement2 = $db->prepare("INSERT INTO selectedworks (userid, workid, isincluded, userRank) VALUES (:id, :charid, '0', NULL)");
                 $statement2->bindValue(':id', $id, PDO::PARAM_INT);
-                $statement2->bindValue(':workid', $row['charid'], PDO::PARAM_INT);
+                $statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
                 $statement2->execute();
             }
 
