@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(empty($username_err) && empty($password_err) && empty($password2_err)){
         $param_username = trim($_POST["username"]);
-        $param_pass = trim($_POST["username"]);
+        $param_pass = trim($_POST["password"]);
         $stmt = $db->prepare("SELECT username FROM persons WHERE username=:username");
         $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
         $stmt->execute();
@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt = $db->prepare("SELECT userid FROM persons WHERE username=:username");
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->execute();
-            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $id = row['userid'];
 
             $stmt = $db->prepare("SELECT workid FROM works");
