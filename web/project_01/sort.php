@@ -47,25 +47,26 @@ if(isset($_POST['update']))
 	$statement->execute();
 
 	//constructing query
-    $query = "SELECT distinct charid FROM worktocharacter";
-    if ($_POST["count"] > 0)
-    	$query .= " WHERE workid = $ids[0]";
-    for($i = 1; $i < $_POST["count"]; $i++)
-    {
-
-    	$query .= " OR workid = $ids[$i]";
-    }
-    $query .= " order by charid";
-
-    //selecting character from many to many table
-    $statement = $db->prepare($query);
-	$statement->execute();
-	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+	if ($_POST["count"] > 0)
 	{
-		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded= '1' WHERE userid=:id AND charid=:charid");
-		$statement2->bindValue(':id', $id, PDO::PARAM_INT);
-		$statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
-		$statement2->execute();
+	    $query = "SELECT distinct charid FROM worktocharacter";
+    	$query .= " WHERE workid = $ids[0]";
+	    for($i = 1; $i < $_POST["count"]; $i++)
+	    {
+	    	$query .= " OR workid = $ids[$i]";
+	    }
+	    $query .= " order by charid";
+
+	    //selecting character from many to many table
+	    $statement = $db->prepare($query);
+		$statement->execute();
+		while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+		{
+			$statement2 = $db->prepare("UPDATE rankedchars SET isincluded= '1' WHERE userid=:id AND charid=:charid");
+			$statement2->bindValue(':id', $id, PDO::PARAM_INT);
+			$statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
+			$statement2->execute();
+		}
 	}
 } 
 
@@ -82,8 +83,8 @@ if(isset($_POST['update']))
 </head>
 
 <body>
-<form method="post" action="sort.php">
-<ul id="sortable" >
+<form method="post" action="sort.php" id="characters">
+<ol id="sortable" >
 
 <?php
 $statement = $db->prepare("SELECT why.charid, exs.name, exs.art FROM rankedchars AS why JOIN characters AS exs ON why.charid = exs.charid WHERE userid=:id AND isIncluded ORDER BY userRank, why.charid");
@@ -98,25 +99,15 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	echo "<li id='$charid'> $name (<a href='art/$art' target='_blank' >X</a>)</li>";
 	$count++;
 }
-	echo "</ul><input id='sortsize' type='hidden' value='$count' name='sortsize'></input>";
+	echo "</ol><input id='sortsize' type='hidden' value='$count' name='sortsize'></input>";
 ?>
 
 <input id='order' type='hidden' value='' name='order'></input>
 <button id="save" type="submit" class="update" name="save"> Save </button>
 </form>
 
-<br/>
-<form method="post" action="generate.php">
-	<input id='sortsize2' type='hidden' value='$count' name='sortsize2'></input>
-	<input id='order2' type='hidden' value='' name='order2'></input>
-Number of images: <select class="selector" name="Imagenum">
-    	<option value="1">Five</option>
-    	<option value="2">Ten</option>
-    	<option value="3">Fifteen</option>
-    	<option value="4">Twenty</option>
-	</select>
-	<button id="generate" class="update" type="submit"> Generate </button>
-</form>
+
+
 <form id="works" method= "post" action="sort.php">
 <?php
 $statement = $db->prepare("SELECT why.workid, why.isincluded, exs.name FROM selectedworks AS why JOIN works AS exs ON why.workid = exs.workid WHERE userid=:id ORDER BY why.workid");
@@ -143,6 +134,19 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	";
 ?>
 <button id="update" class="update" name="update" type="submit"> Update Characters </button> 
+</form>
+
+<form method="post" action="generate.php" id="generate">
+	<input id='sortsize2' type='hidden' value='$count' name='sortsize2'></input>
+	<input id='order2' type='hidden' value='' name='order2'></input>
+Number of images: <select class="selector" name="Imagenum">
+		<option value="0">None</option>
+<?php
+	for ($i = 1; $i*5 <= $count; $i++)
+	echo "<option value='$i'>" . $i*5 . "</option>";
+?>
+	</select>
+	<button id="generate" class="update" type="submit"> Generate </button>
 </form>
 
 

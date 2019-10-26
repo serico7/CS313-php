@@ -3,3 +3,16 @@ width:75%;
 margin-left:12.5%;
   text-align: center;
 }
+
+form#characters {
+float:left;
+}
+form#generate {
+float:left;
+clear:left;
+}
+form#works {
+float:right;
+}
+
+ol { list-style-type: decimal; }

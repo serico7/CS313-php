@@ -26,7 +26,6 @@ for ($i = 0; $i < $_POST["Imagenum"]; $i++)
 		$row = $statement->fetch(PDO::FETCH_ASSOC);
 		$name = $row['name'];
 		$art = $row['art'];
-		$charid = $row['charid'];
 		echo "<td><img class='art' src='art/$art' title='$name' alt='$name'/></td>";
 		$count++;
 	}
