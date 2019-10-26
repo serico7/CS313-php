@@ -111,7 +111,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 
 <br/>
 <form method="post" action="generate.php">
-	<input id='sortsize2' type='hidden' value='$count' name='sortsize'></input>
+	<input id='sortsize2' type='hidden' value='$count' name='sortsize2'></input>
 	<input id='order2' type='hidden' value='' name='order2'></input>
 Number of images: <select class="selector" name="Imagenum">
     	<option value="1">Five</option>
