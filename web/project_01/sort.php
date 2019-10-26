@@ -25,6 +25,53 @@ if(isset($_POST['save']))
 } 
 //\o/
 
+if(isset($_POST['update']))
+{
+	//clearing everything
+	$statement = $db->prepare("UPDATE selectedworks SET isincluded=:bBool WHERE userid=:id");
+	$statement->bindValue(':id', $id, PDO::PARAM_INT);
+	$statement->bindValue(':rank', '0', PDO::PARAM_BOOL);
+	$statement->execute();
+	
+	//setting selected works
+	$ids = explode( ',', $_POST["true"] );
+	for($i = 0; $i < $_POST["count"]; $i++)
+	{
+		$statement = $db->prepare("UPDATE rankedchars SET userRank=:rank WHERE userid=:id AND charid=:charid");
+		$statement->bindValue(':id', $id, PDO::PARAM_INT);
+		$statement->bindValue(':rank', '0', PDO::PARAM_BOOL);
+		$statement->execute();
+	}
+	//clearing characters
+	$statement = $db->prepare("UPDATE rankedchars SET isincluded=:bBool WHERE userid=:id");
+	$statement->bindValue(':id', $id, PDO::PARAM_INT);
+	$statement->bindValue(':bBool', '0', PDO::PARAM_BOOL);
+	$statement->execute();
+
+	//constructing query
+    $query = "SELECT distinct charid FROM worktocharacter";
+    if ($_POST["count"] > 0)
+    	$query .= " WHERE workid = $ids[0]";
+    for($i = 1; $i < $_POST["count"]; $i++)
+    {
+
+    	$query .= " OR workid = $ids[$i]";
+    }
+    $query .= " order by charid";
+
+    //selecting character from many to many table
+    $statement = $db->prepare($query);
+	$statement->execute();
+	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+	{
+		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded=:cBool WHERE user id=:id AND charid=:charid");
+		$statement2->bindValue(':id', $id, PDO::PARAM_INT);
+		$statement2->bindValue(':cBool', '1', PDO::PARAM_BOOL);
+		$statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
+		$statement2->execute();
+	}
+} 
+
 
 ?>
 <!DOCTYPE html>
@@ -98,9 +145,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	<input id='true' type='hidden' value='$array' name='true'></input>
 	";
 ?>
-<input id='count' type='hidden' value='' name='count'></input>
-<input id='true' type='hidden' value='' name='true'></input>
-<button id="update" class="update" type="submit"> Update Characters </button> 
+<button id="update" class="update" name="update" type="submit"> Update Characters </button> 
 </form>
 
 

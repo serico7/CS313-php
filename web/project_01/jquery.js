@@ -10,7 +10,8 @@ $(document).ready(function(){
     	if ($(this).prop('checked'))
 	    {
  		   	$("#workcount").val(parseInt($("#workcount").val()) + 1);
-    	    $("#true").val($("#true").val() + "," + $(this).prop('id'));
+        	var cat = ($('#workcount').val() > 1) ? "," : "";
+    	 	$("#true").val($("#true").val() + cat + $(this).prop('id'));
 		}
     	else
    		{
@@ -19,12 +20,12 @@ $(document).ready(function(){
         	var arr = str.split(",");
 			for( var i = 0; i < arr.length; i++)
         	{ 
-   				if ( arr[i] === 5) {
-     				arr.splice(i, 1); 
+   				if ( parseInt(arr[i]) == $(this).prop('id')) {
+     				arr.splice(i, 1);
      				i--;
             	}
         	}
-        	$("#true").val(arr);
+        	$("#true").val(arr.join());
    		}
 	});
 	$( "#sortable" ).disableSelection();
