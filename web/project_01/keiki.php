@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt->rowCount() == 1){
             $username_err = "Username is already taken.";
         } else{
-            $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+            $stmt = $db->prepare("INSERT INTO persons (username, password) VALUES (:username, :password)");
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_pass, PDO::PARAM_STR);
             $stmt->execute();
