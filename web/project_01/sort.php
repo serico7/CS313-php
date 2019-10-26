@@ -28,25 +28,22 @@ if(isset($_POST['save']))
 if(isset($_POST['update']))
 {
 	//clearing everything
-	$statement = $db->prepare("UPDATE selectedworks SET isincluded=:bBool WHERE userid=:id");
+	$statement = $db->prepare("UPDATE selectedworks SET isincluded='0' WHERE userid=:id");
 	$statement->bindValue(':id', $id, PDO::PARAM_INT);
-	$statement->bindValue(':bBool', 0, PDO::PARAM_BOOL);
 	$statement->execute();
 	
 	//setting selected works
 	$ids = explode( ',', $_POST["true"] );
 	for($i = 0; $i < $_POST["count"]; $i++)
 	{
-		$statement = $db->prepare("UPDATE selectedworks SET isincluded=:bBool WHERE userid=:id AND workid=:workid");
+		$statement = $db->prepare("UPDATE selectedworks SET isincluded = '1' WHERE userid=:id AND workid=:workid");
 		$statement->bindValue(':id', $id, PDO::PARAM_INT);
-		$statement->bindValue(':bBool', 1, PDO::PARAM_BOOL);
 		$statement->bindValue(':workid', $ids[$i], PDO::PARAM_INT);
 		$statement->execute();
 	}
 	//clearing characters
-	$statement = $db->prepare("UPDATE rankedchars SET isincluded=:bBool WHERE userid=:id");
+	$statement = $db->prepare("UPDATE rankedchars SET isincluded = '0' WHERE userid=:id");
 	$statement->bindValue(':id', $id, PDO::PARAM_INT);
-	$statement->bindValue(':bBool', 0, PDO::PARAM_BOOL);
 	$statement->execute();
 
 	//constructing query
@@ -65,9 +62,8 @@ if(isset($_POST['update']))
 	$statement->execute();
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
-		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded=:cBool WHERE user id=:id AND charid=:charid");
+		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded='1' WHERE user id=:id AND charid=:charid");
 		$statement2->bindValue(':id', $id, PDO::PARAM_INT);
-		$statement2->bindValue(':cBool', 1, PDO::PARAM_BOOL);
 		$statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
 		$statement2->execute();
 	}
