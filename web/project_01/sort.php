@@ -63,7 +63,7 @@ if(isset($_POST['update']))
 	$statement->execute();
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
-		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded= '1' WHERE user id=:id AND charid=:charid");
+		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded= '1' WHERE userid=:id AND charid=:charid");
 		$statement2->bindValue(':id', $id, PDO::PARAM_INT);
 		$statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
 		$statement2->execute();
