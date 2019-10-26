@@ -28,7 +28,8 @@ if(isset($_POST['save']))
 if(isset($_POST['update']))
 {
 	//clearing everything
-	$statement = $db->prepare("UPDATE selectedworks SET isincluded='0' WHERE userid=:id");
+	$why = true;
+	$statement = $db->prepare("UPDATE selectedworks SET isincluded = '0' WHERE userid=:id");
 	$statement->bindValue(':id', $id, PDO::PARAM_INT);
 	$statement->execute();
 	
@@ -62,7 +63,7 @@ if(isset($_POST['update']))
 	$statement->execute();
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
-		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded='1' WHERE user id=:id AND charid=:charid");
+		$statement2 = $db->prepare("UPDATE rankedchars SET isincluded= '1' WHERE user id=:id AND charid=:charid");
 		$statement2->bindValue(':id', $id, PDO::PARAM_INT);
 		$statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
 		$statement2->execute();
@@ -141,6 +142,8 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	<input id='workcount' type='hidden' value='$count' name='count'></input>
 	<input id='true' type='hidden' value='$array' name='true'></input>
 	";
+	if ($why)
+		echo "<p>Screw me</p>";
 ?>
 <button id="update" class="update" name="update" type="submit"> Update Characters </button> 
 </form>
