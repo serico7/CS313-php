@@ -30,16 +30,17 @@ if(isset($_POST['update']))
 	//clearing everything
 	$statement = $db->prepare("UPDATE selectedworks SET isincluded=:bBool WHERE userid=:id");
 	$statement->bindValue(':id', $id, PDO::PARAM_INT);
-	$statement->bindValue(':rank', '0', PDO::PARAM_BOOL);
+	$statement->bindValue(':bBool', '0', PDO::PARAM_BOOL);
 	$statement->execute();
 	
 	//setting selected works
 	$ids = explode( ',', $_POST["true"] );
 	for($i = 0; $i < $_POST["count"]; $i++)
 	{
-		$statement = $db->prepare("UPDATE rankedchars SET userRank=:rank WHERE userid=:id AND charid=:charid");
+		$statement = $db->prepare("UPDATE selectedworks SET isincluded=:bBool WHERE userid=:id AND workid=:workid");
 		$statement->bindValue(':id', $id, PDO::PARAM_INT);
-		$statement->bindValue(':rank', '0', PDO::PARAM_BOOL);
+		$statement->bindValue(':bBool', '1', PDO::PARAM_BOOL);
+		$statement->bindValue(':workid', $ids[$i], PDO::PARAM_INT);
 		$statement->execute();
 	}
 	//clearing characters
@@ -118,7 +119,7 @@ Number of images: <select class="selector" name="Imagenum">
     	<option value="3">Fifteen</option>
     	<option value="4">Twenty</option>
 	</select>
-	<button id="generate" class="update" type="submit"> Generate </button>
+	<button id="generate" type="submit"> Generate </button>
 </form>
 <form id="works" action="sort.php">
 <?php
