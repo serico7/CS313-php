@@ -81,8 +81,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $statement2->bindValue(':charid', $row['charid'], PDO::PARAM_INT);
                 $statement2->execute();
             }
-
-            session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;                            
