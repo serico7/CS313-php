@@ -108,5 +108,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
     </div>
+    <a href="keiki.php">Create an Account</a>
 </body>
 </html>

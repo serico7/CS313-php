@@ -3,7 +3,7 @@
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_COOKIE["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
@@ -28,7 +28,6 @@ if(isset($_POST['save']))
 if(isset($_POST['update']))
 {
 	//clearing everything
-	$why = true;
 	$statement = $db->prepare("UPDATE selectedworks SET isincluded = '0' WHERE userid=:id");
 	$statement->bindValue(':id', $id, PDO::PARAM_INT);
 	$statement->execute();
@@ -116,7 +115,7 @@ Number of images: <select class="selector" name="Imagenum">
     	<option value="3">Fifteen</option>
     	<option value="4">Twenty</option>
 	</select>
-	<button id="generate" type="submit"> Generate </button>
+	<button id="generate" class="update" type="submit"> Generate </button>
 </form>
 <form id="works" method= "post" action="sort.php">
 <?php
@@ -142,8 +141,6 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	<input id='workcount' type='hidden' value='$count' name='count'></input>
 	<input id='true' type='hidden' value='$array' name='true'></input>
 	";
-	if ($why)
-		echo "<p>Screw me</p>";
 ?>
 <button id="update" class="update" name="update" type="submit"> Update Characters </button> 
 </form>
