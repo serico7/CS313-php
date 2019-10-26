@@ -23,7 +23,7 @@ if(isset($_POST['save']))
 		$statement->execute();
 	}
 } 
-
+//\o/
 
 
 ?>
@@ -72,23 +72,35 @@ Number of images: <select class="selector" name="Imagenum">
     	<option value="4">Twenty</option>
 	</select>
 	<button id="generate" class="update" type="submit"> Generate </button>
-</form>
+</form id="works">
 
 <?php
 $statement = $db->prepare("SELECT why.workid, why.isincluded, exs.name FROM selectedworks AS why JOIN works AS exs ON why.workid = exs.workid WHERE userid=:id ORDER BY why.workid");
 $statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
+$count = 0;
+$array = array();
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
 	$name = $row['name'];
 	$aBool = $row['isincluded'];
 	$workid = $row['workid'];
-	echo "<input id='$workid' type='checkbox' name='$name' " . ($aBool ? 'checked' : '') . "/> $name <br>";
+	echo "<input class='work' id='$workid' type='checkbox' name='$name' " . ($aBool ? 'checked' : '') . "/> $name <br>";
+	if ($aBool)
+	{
+		$count++;
+		array_push($array, $workid);
+	}
 }
+	$array = implode(",", $array)
+	echo "
+	<input id='workcount' type='hidden' value='$count' name='count'></input>
+	<input id='true' type='hidden' value='$array' name='true'></input>
+	";
 ?>
 <input id='count' type='hidden' value='' name='count'></input>
 <input id='true' type='hidden' value='' name='true'></input>
-<button> 
+<button id="update" class="update" type="submit"> Update Characters </button> 
 </form>
 
 
