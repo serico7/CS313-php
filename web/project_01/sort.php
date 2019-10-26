@@ -119,7 +119,7 @@ Number of images: <select class="selector" name="Imagenum">
     	<option value="4">Twenty</option>
 	</select>
 	<button id="generate" class="update" type="submit"> Generate </button>
-</form id="works">
+</form id="works" action="sort.php">
 
 <?php
 $statement = $db->prepare("SELECT why.workid, why.isincluded, exs.name FROM selectedworks AS why JOIN works AS exs ON why.workid = exs.workid WHERE userid=:id ORDER BY why.workid");
