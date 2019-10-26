@@ -109,5 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
     </div>
     <a href="keiki.php">Create an Account</a>
+    <h1 class="title">TohoRank v2.0</h1>
+    <p class="title">This is a site for saving and editing a ranked list of characters from Touhou Project with consideration for which works you are familiar with. This is inspired by the site <a href="https://tohosort.frelia.my">Tohosort</a>. However, I was not fond of being unable to conveniently change the results of the list after it was generated. The art used is by <a href="https://www.pixiv.net/member.php?id=4920496">Dairi</a>. After you create an account, select the works that you are familiar with (or just pick whatever) and update to add them to the list of characters. You can then drag and drop the names in the order you'd like. If you'd like to see art of a character, click the X next to their name. You can save to continue sorting later, which I reccomend doing often to prevent the site from timing out. You can also generate a chart to display the order in a more shareable format. </p>
 </body>
 </html>
