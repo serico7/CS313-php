@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $stmt = $db->prepare("SELECT workid FROM works");
             $stmt->execute();
-            while($row = $statement->fetch(PDO::FETCH_ASSOC))
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
             {
                 $statement2 = $db->prepare("INSERT INTO selectedworks (userid, workid, isincluded) VALUES (:id, :workid, '0')");
                 $statement2->bindValue(':id', $id, PDO::PARAM_INT);
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $stmt = $db->prepare("SELECT charid FROM characters");
             $stmt->execute();
-            while($row = $statement->fetch(PDO::FETCH_ASSOC))
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
             {
                 $statement2 = $db->prepare("INSERT INTO selectedworks (userid, workid, isincluded, userRank) VALUES (:id, :workid, '0', NULL)");
                 $statement2->bindValue(':id', $id, PDO::PARAM_INT);
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span><?php echo $password2_err; ?></span>
             </div>
             <div>
-                <input type="submit" value="Login">
+                <input type="submit" value="Create Account">
             </div>
         </form>
     </div>
