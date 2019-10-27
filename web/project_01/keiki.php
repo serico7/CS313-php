@@ -121,5 +121,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
     </div>
+    <a href="login.php">Back to Login</a>
 </body>
 </html>
