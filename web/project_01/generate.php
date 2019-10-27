@@ -42,7 +42,7 @@ while (($count + 5) < $_POST["sortsize2"])
 		$row = $statement->fetch(PDO::FETCH_ASSOC);
 		$name = $row['name'];
 		$art = $row['art'];
-		echo "<td>$count" . ". $name</td>";
+		echo "<td>" . ($count+1) . ". $name</td>";
 		$count++;
 	}
 	echo "</tr>";
