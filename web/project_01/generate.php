@@ -26,7 +26,7 @@ for ($i = 0; $i < $_POST["Imagenum"]; $i++)
 		$row = $statement->fetch(PDO::FETCH_ASSOC);
 		$name = $row['name'];
 		$art = $row['art'];
-		echo "<td><img class='art' src='art/$art' title='"($count + 1) .". $name' alt='"($count + 1) .". $name'/></td>";
+		echo "<td><img class='art' src='art/$art' title='" . ($count + 1) .". $name' alt='" . ($count + 1) . ". $name'/></td>";
 		$count++;
 	}
 	echo "</tr>";
@@ -56,7 +56,7 @@ while ($count < $_POST["sortsize2"])
 	$row = $statement->fetch(PDO::FETCH_ASSOC);
 	$name = $row['name'];
 	$art = $row['art'];
-	echo "<td>"($count+1) . ". $name</td>";
+	echo "<td>" . ($count+1) . ". $name</td>";
 	$count++;
 }
 echo "</tr>";
