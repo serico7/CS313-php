@@ -150,7 +150,7 @@ Number of images: <select class="selector" name="Imagenum">
 	<button id="generate" class="update" type="submit"> Generate </button>
 	<br/><br/><br/>
 </form>
-<a href="junko.php">Delete Account</a>
+<a id="delete" href="junko.php">Delete Account</a>
 <br/><br/><br/>
 
 </body>

@@ -15,6 +15,10 @@ form#works {
 float:right;
 }
 
+a#delete {
+	float:left;
+	clear:left;
+}
 ol { list-style-type: decimal; }
 
 table {
