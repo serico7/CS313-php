@@ -16,3 +16,18 @@ float:right;
 }
 
 ol { list-style-type: decimal; }
+
+table {
+  border-collapse: collapse;
+}
+
+table, td, tr {
+  border: 1px solid black;
+}
+
+td {
+	text-align:center;
+}
+img {
+	height:200px;
+}

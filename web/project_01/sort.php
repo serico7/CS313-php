@@ -109,11 +109,12 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 
 
 <form id="works" method= "post" action="sort.php">
+	<br/>
 <?php
 $statement = $db->prepare("SELECT why.workid, why.isincluded, exs.name FROM selectedworks AS why JOIN works AS exs ON why.workid = exs.workid WHERE userid=:id ORDER BY why.workid");
 $statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
-$count = 0;
+$bcount = 0;
 $array = array();
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
@@ -123,13 +124,13 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	echo "<input class='work' id='$workid' type='checkbox' name='$name' " . ($aBool ? 'checked' : '') . "/> $name <br>";
 	if ($aBool)
 	{
-		$count++;
+		$bcount++;
 		array_push($array, $workid);
 	}
 }
 	$array = implode(",", $array);
 	echo "
-	<input id='workcount' type='hidden' value='$count' name='count'></input>
+	<input id='workcount' type='hidden' value='$bcount' name='count'></input>
 	<input id='true' type='hidden' value='$array' name='true'></input>
 	";
 ?>
@@ -147,6 +148,7 @@ Number of images: <select class="selector" name="Imagenum">
 ?>
 	</select>
 	<button id="generate" class="update" type="submit"> Generate </button>
+	<br/><br/><br/>
 </form>
 
 
