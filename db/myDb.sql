@@ -29,5 +29,6 @@ CREATE table selectedworks(
 CREATE table rankedchars(
 	userid integer NOT NULL references persons(userid),
 	charid integer NOT NULL references characters(charid),
+	isIncluded boolean NOT NULL,
 	userRank integer
 );
